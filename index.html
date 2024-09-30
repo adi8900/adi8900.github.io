@@ -85,7 +85,7 @@
 							<p>nazwisko:</p>
 						</div>
 						<div class="col-md-4">
-							<p>Kowalski</p>
+							<p class="nazwisko">Kowalski</p>
 						</div>
 					</div>
 					<div class="row">
@@ -93,7 +93,7 @@
 							<p>imię:</p>
 						</div>
 						<div class="col-md-4">
-							<p>Jan</p>
+							<p class="imie">Jan</p>
 						</div>
 					</div>
 					<div class="row">
@@ -109,7 +109,7 @@
 							<p>email:</p>
 						</div>
 						<div class="col-md-4">
-							<p>999@student.ans-elblag.pl</p>
+							<p class="email">999@student.ans-elblag.pl</p>
 						</div>
 					</div>
 					<div class="row">
@@ -117,7 +117,7 @@
 							<p>nr indeksu:</p>
 						</div>
 						<div class="col-md-4">
-							<p>999</p>
+							<p class="nr-indeksu">999</p>
 						</div>
 					</div>
 					<button onclick="pokazDane()">Pokaż dane</button>
@@ -126,57 +126,99 @@
 			</div>
 		</section>
 		<!-- /container -->
+	<script>
+		function pokazDane() {
+			const surname = document.getElementsByClassName('nazwisko');
+			const name = document.getElementsByClassName('imie');
+			const email = document.getElementsByClassName('email');
+			const indexNumber = document.getElementsByClassName('nr-indeksu');
 
-	<section id="projekt1">
-		<div class="container">
-			<div class="jumbotron">
-				<h1>Projekt 1</h1>
+			if (surname.length > 0) {
+            surname[0].innerHTML = 'Szymański';
+			}
 
-				<p>Miejsce na projekt laboratoryjny</p>
-				<p id="wynik"></p>
->
-					<script async>
-						document.write('<p>Ćw. 1. Witaj, ' + name + '</p>');
-					   </script>
-					   <script>
-							const tablica=['Elblag','Gdansk','Malbork','Warszawa','Miłoradz'];
-							alert(tablica[0]);
-						</script>
-						<script>
-							tablica[tablica.length-1] = 'Szczecin';
-							alert(tablica[tablica.length-1]);
-						</script>
-						<script>
-							tablica[5]='Wrocław';
-						</script>
-						<script>
-							tablica[tablica.length] = 'Londyn';
-						</script>
-						<script>
-						tablica.push('nowy8', 'nowy9', 'nowy10', 'nowy11')
-						</script>
-						<script>
-							tablica.unshift('nowy12', 'nowy13')
-							</script>
-							<script>
-								const fruitsTab = ['Jabłko', 'Banan', 'Gruszka', 'Śliwka', 'Wiśnia'];
-								document.write('<p>Pierwszy element to <strong>' + fruitsTab[0] + '</strong></p>');
-								document.write('<p>Ostatni element to <strong>' + fruitsTab[fruitsTab.length - 1] + '</strong></p>');
-				
-								fruitsTab.unshift('Truskawka');
-								document.write('<p>Nowy pierwszy element to <strong>' + fruitsTab[0] + '</strong></p>');
-							</script>
-							<script>
-									const paragrafy = document.getElementsByTagName('p').length; 
-                					document.getElementById('wynik').innerHTML = 'Na stronie znajduje sie ' + paragrafy + ' elementów typu <strong>p</strong>.';
-            </script>
-							</script>
+			if (name.length > 0) {
+            name[0].innerHTML = 'Adrian';
+			}
 
-			</div>
+			if (email.length > 0) {
+            email[0].innerHTML = '20485@student.ans-elblag.pl';
+			}
+
+        if (indexNumber.length > 0) {
+            indexNumber[0].innerHTML = '20485';
+        }
+    }
+	</script>
+<section id="projekt1">
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Projekt 1</h1>
+
+			<p>Miejsce na projekt laboratoryjny</p>
+			<p id="wynik"></p>
+
+			<script>
+				document.write('<p>Ćw. 1. Witaj, ' + name + '</p>');
+			</script>
+
+			<script>
+				const tablica = ['Elblag', 'Gdansk', 'Malbork', 'Warszawa', 'Miłoradz'];
+				alert(tablica[0]);
+			</script>
+
+			<script>
+				tablica[tablica.length - 1] = 'Szczecin';
+				alert(tablica[tablica.length - 1]);
+			</script>
+
+			<script>
+				tablica[5] = 'Wrocław';
+			</script>
+
+			<script>
+				tablica[tablica.length] = 'Londyn';
+			</script>
+
+			<script>
+				tablica.push('nowy8', 'nowy9', 'nowy10', 'nowy11');
+			</script>
+
+			<script>
+				tablica.unshift('nowy12', 'nowy13');
+			</script>
+
+			<script>
+				const fruitsTab = ['Jabłko', 'Banan', 'Gruszka', 'Śliwka', 'Wiśnia'];
+				document.write('<p>Pierwszy element to <strong>' + fruitsTab[0] + '</strong></p>');
+				document.write('<p>Ostatni element to <strong>' + fruitsTab[fruitsTab.length - 1] + '</strong></p>');
+
+				fruitsTab.unshift('Truskawka');
+				document.write('<p>Nowy pierwszy element to <strong>' + fruitsTab[0] + '</strong></p>');
+			</script>
+
+			<script>
+				const paragrafy = document.getElementsByTagName('p').length;
+				document.getElementById('wynik').innerHTML = 'Na stronie znajduje się ' + paragrafy + ' elementów typu <strong>p</strong>.';
+			</script>
+
+			<script>
+				let i = 0;
+				const polowa = Math.floor(fruitsTab.length / 2);
+				while (i < polowa) {
+					document.write('<p>Element ' + (i + 1) + ': ' + fruitsTab[i] + '</p>');
+					i++;
+				}
+			</script>
+
+			<script>
+				for (let i = 0; i < Math.floor(fruitsTab.length / 2); i++) {
+					document.write('<p>Element ' + (i + 1) + ': ' + fruitsTab[i] + '</p>');
+				}
+			</script>
 		</div>
-	</section>
-
-
+	</div>
+</section>
 	<section id="projekt2">
 		<div class="container">
 			<div class="jumbotron">
@@ -195,7 +237,6 @@
 			</div>
 		</div>
 	</section>
-	
 	<script>
 		let questions = [
 			['Jak nazywa się największa planeta w Układzie Słonecznym?', 'Jowisz'],
