@@ -126,30 +126,41 @@
 			</div>
 		</section>
 		<!-- /container -->
-	<script>
-		function pokazDane() {
-			const surname = document.getElementsByClassName('nazwisko');
-			const name = document.getElementsByClassName('imie');
-			const email = document.getElementsByClassName('email');
-			const indexNumber = document.getElementsByClassName('nr-indeksu');
+		<script>
+			function pokazDane() {
+				const surname = document.getElementsByClassName('nazwisko');
+				const name = document.getElementsByClassName('imie');
+				const email = document.getElementsByClassName('email');
+				const indexNumber = document.getElementsByClassName('nr-indeksu');
 
-			if (surname.length > 0) {
-            surname[0].innerHTML = 'Szymański';
+				let surnameText = '';
+				let nameText = '';
+				let emailText = '';
+				let indexNumberText = '';
+
+				if (surname.length > 0) {
+					surname[0].innerHTML = 'Szymański';
+					surnameText = 'Szymański';
+				}
+
+				if (name.length > 0) {
+					name[0].innerHTML = 'Adrian';
+					nameText = 'Adrian';
+				}
+
+				if (email.length > 0) {
+					email[0].innerHTML = '20485@student.ans-elblag.pl';
+					emailText = '20485@student.ans-elblag.pl';
+				}
+
+				if (indexNumber.length > 0) {
+					indexNumber[0].innerHTML = '20485';
+					indexNumberText = '20485';
+				}
+
+				alert(`Nazwisko: ${surnameText}\nImie: ${nameText}\nEmail: ${emailText}\nNumer indeksu: ${indexNumberText}`);
 			}
-
-			if (name.length > 0) {
-            name[0].innerHTML = 'Adrian';
-			}
-
-			if (email.length > 0) {
-            email[0].innerHTML = '20485@student.ans-elblag.pl';
-			}
-
-        if (indexNumber.length > 0) {
-            indexNumber[0].innerHTML = '20485';
-        }
-    }
-	</script>
+</script>
 <section id="projekt1">
 	<div class="container">
 		<div class="jumbotron">
@@ -157,11 +168,13 @@
 
 			<p>Miejsce na projekt laboratoryjny</p>
 			<p id="wynik"></p>
+		<script>
+				let name = prompt('Jak masz na imię?', '');
+		</script>
 
 			<script>
 				document.write('<p>Ćw. 1. Witaj, ' + name + '</p>');
 			</script>
-
 			<script>
 				const tablica = ['Elblag', 'Gdansk', 'Malbork', 'Warszawa', 'Miłoradz'];
 				alert(tablica[0]);
@@ -405,9 +418,6 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		let name = prompt('Jak masz na imię?', '');
-		</script>
 	<!-- Bootstrap core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/ie10-viewport-bug-workaround.js"></script>
