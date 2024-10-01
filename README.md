@@ -1,2 +1,8 @@
 # js2024
-20485 Języki Wysokiego Poziomu Adrian Szymański
+Języki Wysokiego Poziomu w aplikacjach internetowych
+
+Nr Indeksu: 20485
+
+Imię: Adrian
+
+Nazwisko: Szymański
