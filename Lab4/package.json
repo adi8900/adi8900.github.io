@@ -1,0 +1,23 @@
+{
+  "name": "lab4",
+  "version": "1.0.0",
+  "description": "Lab 4",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adi8900/adi8900.github.io.git"
+  },
+  "keywords": [
+    "lab",
+    "4"
+  ],
+  "author": "Adrian Szymański",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adi8900/adi8900.github.io/issues"
+  },
+  "homepage": "https://github.com/adi8900/adi8900.github.io#readme"
+}
