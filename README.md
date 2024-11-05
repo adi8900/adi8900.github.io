@@ -6,3 +6,5 @@ Nr Indeksu: 20485
 Imię: Adrian
 
 Nazwisko: Szymański
+
+Link do strony z lab6: https://adi8900.github.io/Lab6/
