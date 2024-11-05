@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Programowanie w JAVASCRIPT - template">
+<meta name="author" content="dr inż. Jacek Paluszak">
+<link rel="icon" href="img/favicon.ico">
+
+<title>Programowanie w JAVASCRIPT</title>
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/styles.css" rel="stylesheet">
+<link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+<link href="css/navbar-fixed-top.css" rel="stylesheet">
+<script src="js/ie-emulation-modes-warning.js"></script>
+
+<!-- jQuery  -->
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="http://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+<script src="js/jquery.easing.1.3.min.js"></script>
+<script src="js/jquery.easing.compatibility.js"></script>
+<script>
+    let score = 0;
+    let q = 0;
+    const questions = [
+        ['Czy rok 2000 jest przestępny', 'tak'],
+        ['Najpopularniejszy system w telefonach to:', 'Android'],
+        ['Największe miasto w Polsce to:', 'Warszawa'],
+        ['Narzedzie do kontroli kodu to:', 'git'],
+        ['Jaki jest najwyższy szczyt na świecie?', 'Mount Everest'],
+        ['Jakim językiem jest JavaScript?', 'obiektowy'],
+        ['Jakie rozszerzenie ma plik Python?', 'py']
+    ];
+
+    function showQuestion() {
+        if (q < questions.length) {
+            document.getElementsByClassName('question')[0].innerText = questions[q][0];
+            document.getElementsByClassName('answer')[0].value = '';
+            document.getElementsByClassName('score')[0].innerText = 'Liczba punktów: ' + score + ' z ' + questions.length;
+        } else {
+            document.getElementsByClassName('question')[0].innerText = 'Koniec quizu! Twoja punktacja to: ' + score + ' z ' + questions.length;
+            document.getElementsByClassName('score')[0].innerText = '';
+            document.getElementsByClassName('nextButton')[0].style.display = 'none';
+            document.getElementsByClassName('answer')[0].style.display = 'none';
+        }
+    }
+
+    function checkAnswer() {
+        const answer = document.getElementsByClassName('answer')[0].value.toLowerCase().trim();
+        if (answer === questions[q][1].toLowerCase()) {
+            score++;
+        } else {
+            alert("Zła odpowiedź. Poprawna to: " + questions[q][1]);
+        }
+        q++;
+        showQuestion();
+    }
+
+    window.onload = function() {
+        showQuestion();
+    };
+</script>
+
+<script>
+	$(document).ready(function() {
+	$('span.pq').each(function() {
+	const quote=$(this).clone();
+	quote.removeClass('pq');
+	quote.addClass('pullquote');
+	$(this).before(quote);
+	}); // koniec funkcji each
+	}); // koniec funkcji ready
+	</script>
+
+<script>
+	$(document).ready(function() {
+        $(document).dblclick(function() {
+            alert("Podwojne klikniecie");
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.click-me').click(function() {
+            $(this).text("Zostałem kliknięty!");
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.link').mouseenter(function() {
+            const message = "<p>Wskazałeś odnośnik myszą!</p>";
+            $('.main').append(message);
+        }).mouseleave(function() {
+            $('.main p').last().remove();
+        });
+    });
+</script>
+
+<script>
+$(document).ready(function() {
+    $('.change-style').click(function() {
+        const target = $(this).data('target');
+        const buttonNumber = $(this).text().split(" ")[1];
+
+        $(target).toggleClass('red-text large-font bold-text blue-background');
+
+        const tagName = $(target).prop("tagName").toLowerCase();
+        const message = `<p>Przycisk ${buttonNumber} zmienił styl elementu <strong>${tagName}</strong>.</p>`;
+        $('.main').append(message);
+        
+        $(this).text(`Przycisk ${buttonNumber} kliknięty`);
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    function resetStyles() {
+        $('#languagesTable tbody tr, #languagesTable tbody td').css('background-color', '');
+        $('.btn').removeClass('btn-success').addClass('btn-info'); // Resetuj kolory przycisków
+    }
+
+    function changeButtonColor(button) {
+        $(button).removeClass('btn-info').addClass('btn-success'); // Zmień kolor przycisku na zielony
+    }
+
+    $('#editRowByChild').on('click dblclick', function(event) {
+        if (event.type === 'dblclick') {
+            resetStyles();
+        } else {
+            $('#languagesTable > tbody > tr:first-child').css('background-color', 'lightblue');
+            changeButtonColor(this);
+        }
+    });
+
+    $('#editRowBySibling').on('click dblclick', function(event) {
+        if (event.type === 'dblclick') {
+            resetStyles();
+        } else {
+            $('#languagesTable tbody tr:first').next().css('background-color', 'lightgreen');
+            changeButtonColor(this);
+        }
+    });
+
+    $('#editRowByAttr').on('click dblclick', function(event) {
+        if (event.type === 'dblclick') {
+            resetStyles();
+        } else {
+            $('#languagesTable tbody td[data-level]').css('background-color', '#ffcccb');
+            changeButtonColor(this);
+        }
+    });
+
+    $('#editRowByAttrValue').on('click dblclick', function(event) {
+        if (event.type === 'dblclick') {
+            resetStyles();
+        } else {
+            $('#languagesTable tbody td[data-level="medium"]').css('background-color', '#cce5ff');
+            changeButtonColor(this);
+        }
+    });
+
+    $('#editRowByAttrStartsWith').on('click dblclick', function(event) {
+        if (event.type === 'dblclick') {
+            resetStyles();
+        } else {
+            $('#languagesTable tbody td[data-level^="ea"]').css('background-color', '#d1e7dd');
+            changeButtonColor(this);
+        }
+    });
+
+    $('#editRowByAttrEndsWith').on('click dblclick', function(event) {
+        if (event.type === 'dblclick') {
+            resetStyles();
+        } else {
+            $('#languagesTable tbody td[data-level$="ium"]').css('background-color', '#e2e3e5');
+            changeButtonColor(this);
+        }
+    });
+
+    $('#editRowByAttrContains').on('click dblclick', function(event) {
+        if (event.type === 'dblclick') {
+            resetStyles();
+        } else {
+            $('#languagesTable tbody td[data-level*="edi"]').css('background-color', '#ffe8a1');
+            changeButtonColor(this); 
+        }
+    });
+});
+</script>
+
+<script>
+	$(document).ready(function() {
+    $('#editEvenRows').click(function() {
+        $('#languagesTable tbody tr:even').css('background-color', 'lightblue');
+    });
+
+    $('#editOddRows').click(function() {
+        $('#languagesTable tbody tr:odd').css('background-color', 'lightcoral');
+    });
+
+    $('#editMediumLevel').click(function() {
+        $('#languagesTable tbody tr').filter(function() {
+            return $(this).find('td[data-level="medium"]').length > 0;
+        }).css('background-color', 'lightgreen');
+    });
+
+    $('#editPython').click(function() {
+        $('#languagesTable tbody tr').filter(function() {
+            return $(this).find('td:contains("Python")').length > 0;
+        }).css('background-color', 'lightyellow');
+    });
+
+    $('#editPopularityAbove90').click(function() {
+        $('#languagesTable tbody tr').filter(function() {
+            return parseInt($(this).find('td:nth-child(4)').text()) > 90;
+        }).css('background-color', 'lightpink');
+    });
+
+    $('#toggleHiddenRows').click(function() {
+        $('#languagesTable tbody tr').each(function() {
+            $(this).toggle();
+        });
+    });
+});
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#languagesTable td').on('click', function() {
+            const currentCell = $(this);
+            const currentText = currentCell.text();
+
+            const input = $('<input type="text" class="edit-cell" />').val(currentText);
+            currentCell.empty().append(input);
+            input.focus();
+
+            input.on('blur', function() {
+                const newValue = $(this).val();
+                currentCell.empty().text(newValue);
+            });
+
+            input.on('keypress', function(e) {
+                if (e.which === 13) {
+                    const newValue = $(this).val();
+                    currentCell.empty().text(newValue);
+                }
+            });
+        });
+    });
+</script>
+
+
+</head>
+
+<body>
+
+	<!-- navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><img src="img/logo512x128.png"
+					height="40" alt=""></a> <a class="navbar-brand logotext" href="#">Laboratorium</a>
+			</div>
+
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#main-page"
+						class="btn btn-primary" title="Strona główna"> <span
+							class="glyphicon glyphicon-home"></span>
+					</a></li>
+					<li><a href="#projekt1">Projekt 1</a></li>
+					<li><a href="#projekt2">Projekt 2</a></li>
+					<li><a href="#form" data-toggle="modal"
+						data-target="#ModalForm">Kontakt</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Opcje <span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Akcja 1</a></li>
+							<li><a href="#">Akcja 2</a></li>
+							<li><a href="#">Akcja 3</a></li>
+							<li role="separator" class="divider"></li>
+							<li class="dropdown-header">Linki</li>
+							<li><a href="#">Link 1</a></li>
+							<li><a href="#">Link 2</a></li>
+						</ul></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+
+	</nav>
+
+	<!-- Main container -->
+	<section id="main-page">
+		<div class="container">
+
+			<div class="jumbotron">
+				<h1>Języki wysokiego poziomu <br> w aplikacjach internetowych</h1>
+				<div class="row">
+					<div class="col-md-2" align="left">
+						<p>nazwisko:</p>
+					</div>
+					<div class="col-md-4">
+						<p class="nazwisko">Kowalski</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2" align="left">
+						<p>imię:</p>
+					</div>
+					<div class="col-md-4">
+						<p class="imie">Jan</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2" align="left">
+						<p>grupa:</p>
+					</div>
+					<div class="col-md-4">
+						<p>1</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2" align="left">
+						<p>email:</p>
+					</div>
+					<div class="col-md-4">
+						<p class="email">999@student.ans-elblag.pl</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2" align="left">
+						<p>nr indeksu:</p>
+					</div>
+					<div class="col-md-4">
+						<p class="nrIndeksu">999</p>
+					</div>
+				</div>
+				<button onclick="pokazDane()">Pokaż dane</button>
+			</div>
+
+		</div>
+	</section>
+	<!-- /container -->
+	<script>
+		function pokazDane() {
+			const surname = document.getElementsByClassName('nazwisko');
+			const name = document.getElementsByClassName('imie');
+			const email = document.getElementsByClassName('email');
+			const indexNumber = document.getElementsByClassName('nrIndeksu');
+
+			let surnameText = '';
+			let nameText = '';
+			let emailText = '';
+			let indexNumberText = '';
+
+			if (surname.length > 0) {
+				surname[0].innerHTML = 'Szymański';
+				surnameText = 'Szymański';
+			}
+
+			if (name.length > 0) {
+				name[0].innerHTML = 'Adrian';
+				nameText = 'Adrian';
+			}
+
+			if (email.length > 0) {
+				email[0].innerHTML = '20485@student.ans-elblag.pl';
+				emailText = '20485@student.ans-elblag.pl';
+			}
+
+			if (indexNumber.length > 0) {
+				indexNumber[0].innerHTML = '20485';
+				indexNumberText = '20485';
+			}
+
+			alert(`Nazwisko: ${surnameText}\nImie: ${nameText}\nEmail: ${emailText}\nNumer indeksu: ${indexNumberText}`);
+		}
+	</script>
+	<section id="projekt1">
+		<div class="container">
+			<div class="jumbotron">
+				<h1>Projekt 1</h1>
+
+				<p>Miejsce na projekt laboratoryjny</p>
+				<h2>Quiz</h2>
+				<div class="question" style="margin-bottom: 20px;"></div>
+                <input type="text" class="answer" placeholder="Twoja odpowiedź" />
+                <button class="nextButton" onclick="checkAnswer()">Następne pytanie</button>
+                <div class="score"></div>
+			</div>
+		</div>
+	</section>
+
+
+<section id="projektX">
+	<div class="container">
+        <div class="jumbotron">
+	<span class="pq">nie ma problemów nie do rozwiązania</p>
+		<span>Są tylko problemy, którym poświęciliśmy za mało czasu</p>
+		<p>test</p>
+		<p class="pq">Zadanie</p>
+	</div>
+</div>
+</section>
+
+<section id="projekt3">
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Projekt 3</h1>
+			<ul>
+                <li><a href="#" class="link">Odnośnik 1</a></li>
+                <li><a href="#" class="link">Odnośnik 2</a></li>
+                <li><a href="#" class="link">Odnośnik 3</a></li>
+				<div class="main"></div>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="projekt4">
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Projekt 4</h1>
+            <form id="myForm">
+                <button type="button" class="click-me">Kliknij mnie!</button>
+				<button type="button" class="change-style" data-target="h1">Przycisk 1</button>
+                <button type="button" class="change-style" data-target="h2">Przycisk 2</button>
+                <button type="button" class="change-style" data-target="p">Przycisk 3</button>
+                <button type="button" class="change-style" data-target=".container">Przycisk 4</button>
+                <button type="button" class="change-style" data-target=".jumbotron">Przycisk 5</button>
+                <button type="button" class="change-style" data-target="footer">Przycisk 6</button>
+                <button type="button" class="change-style" data-target="nav">Przycisk 7</button>
+                <button type="button" class="change-style" data-target=".main">Przycisk 8</button>
+                <button type="button" class="change-style" data-target=".navbar">Przycisk 9</button>
+                <button type="button" class="change-style" data-target="button">Przycisk 10</button>
+            </form>
+			<div class="main"></div>
+        </div>
+    </div>
+</section>
+
+<section id="projekt5">
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Projekt 5</h1>
+            <table id="languagesTable" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Język Programowania</th>
+                        <th>Poziom Trudności</th>
+                        <th>Zastosowanie</th>
+                        <th>Popularność (0-100)</th>
+                        <th>Typ</th>
+                        <th>Data Wydania</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-level="easy">Python</td>
+                        <td>Łatwy</td>
+                        <td>Data Science, Web Development</td>
+                        <td>90</td>
+                        <td>Interpretowany</td>
+                        <td>1991</td>
+                    </tr>
+                    <tr>
+                        <td data-level="medium">JavaScript</td>
+                        <td>Średni</td>
+                        <td>Web Development, Aplikacje Mobilne</td>
+                        <td>95</td>
+                        <td>Interpretowany</td>
+                        <td>1995</td>
+                    </tr>
+                    <tr>
+                        <td data-level="medium">Java</td>
+                        <td>Średni</td>
+                        <td>Enterprise Applications, Android Development</td>
+                        <td>85</td>
+                        <td>Komplilowany</td>
+                        <td>1995</td>
+                    </tr>
+                    <tr>
+                        <td data-level="hard">C++</td>
+                        <td>Trudny</td>
+                        <td>System Programming, Game Development</td>
+                        <td>80</td>
+                        <td>Komplilowany</td>
+                        <td>1985</td>
+                    </tr>
+                    <tr>
+                        <td data-level="medium">Ruby</td>
+                        <td>Średni</td>
+                        <td>Web Development, Prototypowanie</td>
+                        <td>75</td>
+                        <td>Interpretowany</td>
+                        <td>1995</td>
+                    </tr>
+                    <tr>
+                        <td data-level="hard">Go</td>
+                        <td>Trudny</td>
+                        <td>System Programming, Cloud Services</td>
+                        <td>70</td>
+                        <td>Komplilowany</td>
+                        <td>2009</td>
+                    </tr>
+                    <tr>
+                        <td data-level="easy">PHP</td>
+                        <td>Łatwy</td>
+                        <td>Web Development</td>
+                        <td>80</td>
+                        <td>Interpretowany</td>
+                        <td>1995</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section id="projekt6">
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Projekt 6</h1>
+            <button class="btn btn-info" id="editRowByChild">Edytuj pierwszy wiersz (dziecko)</button>
+            <button class="btn btn-info" id="editRowBySibling">Edytuj drugi wiersz (sąsiad)</button>
+            <button class="btn btn-info" id="editRowByAttr">Edytuj wiersze z atrybutem data-level</button>
+            <button class="btn btn-info" id="editRowByAttrValue">Edytuj wiersz z data-level="medium"</button>
+            <button class="btn btn-info" id="editRowByAttrStartsWith">Edytuj wiersz, którego atrybut zaczyna się od "ea"</button>
+            <button class="btn btn-info" id="editRowByAttrEndsWith">Edytuj wiersz, którego atrybut kończy się na "ium"</button>
+            <button class="btn btn-info" id="editRowByAttrContains">Edytuj wiersz z data-level zawierającym "edi"</button>
+        </div>
+    </div>
+</section>
+
+<section id="projekt7">
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Projekt 7</h1>
+            <button class="btn btn-warning" id="editEvenRows">Edytuj parzyste wiersze</button>
+            <button class="btn btn-warning" id="editOddRows">Edytuj nieparzyste wiersze</button>
+            <button class="btn btn-warning" id="editMediumLevel">Edytuj wiersz z data-level="medium"</button>
+            <button class="btn btn-warning" id="editPython">Edytuj wiersz z Pythonem</button>
+            <button class="btn btn-warning" id="editPopularityAbove90">Edytuj wiersze z popularnością powyżej 90</button>
+            <button class="btn btn-warning" id="toggleHiddenRows">Pokaż/ukryj ukryte wiersze</button>
+        </div>
+    </div>
+</section>
+
+
+	<footer>
+		<div class="container" style="margin-top: 5%">
+			<button type="button" class="btn btn-link" data-toggle="modal"
+				data-target="#myModal">Polityka prywatności</button>
+		</div>
+	</footer>
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel1">Polityka prywatności</h4>
+				</div>
+				<div class="modal-body">polityka prywatności...</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default btn-warning btn-sm"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="ModalForm" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel2">Kontakt</h4>
+				</div>
+				<div class="modal-body">
+					<section id="form" style="margin-top: 5%">
+						<form action="index.html#kontakt" method="post"
+							onsubmit="return checkForm();">
+							<fieldset>
+								<div class="row">
+									<div class="col-md-12">
+										<p class="hide" id="errorName">Podanie imienia jest
+											wymagane!</p>
+									</div>
+								</div>
+								<div class="row" id="success">
+									<div class="col-md-2" align="right">
+										<label class="control-label" for="contactName">Imię</label>
+									</div>
+									<div class="col-md-4">
+										<input type="text" class="form-control " id="contactName"
+											aria-describedby="inputSuccess5Status" onblur="checkName()" />
+										<span class="hide" aria-hidden="true" id="true"></span> <span
+											id="inputSuccess5Status" class="sr-only">(success)</span>
+									</div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-md-12">
+										<p class="hide" id="errorLastName">Podanie nazwiska jest
+											wymagane!</p>
+									</div>
+								</div>
+								<div class="row" id="success2">
+									<div class="col-md-2" align="right">
+										<label class="control-label" for="contactLastName">Nazwisko</label>
+									</div>
+									<div class="col-md-4">
+										<input type="text" class="form-control " id="contactLastName"
+											aria-describedby="inputSuccess5Status"
+											onblur="checkLastName()" /> <span class="hide"
+											aria-hidden="true" id="true2"></span> <span
+											id="inputSuccess5Status2" class="sr-only">(success)</span>
+									</div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-md-12">
+										<p class="hide" id="errorEmail">Podanie emaila jest
+											wymagane!</p>
+										<p class="hide" id="errorEmail2">Błędny email!</p>
+									</div>
+								</div>
+								<div class="row" id="success3">
+									<div class="col-md-2" align="right">
+										<label class="control-label" for="contactEmail">Email</label>
+									</div>
+									<div class="col-md-4">
+										<input type="text" class="form-control " id="contactEmail"
+											aria-describedby="inputSuccess5Status" onblur="checkEmail()" />
+										<span class="hide" aria-hidden="true" id="true3"></span> <span
+											id="inputSuccess5Status3" class="sr-only">(success)</span>
+									</div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-md-2" align="right">
+										<label for="information">Informacje</label>
+									</div>
+									<div class="col-md-4">
+										<textarea name="Informacje" cols="30" rows="7" id="Info"
+											maxlength="250"></textarea>
+									</div>
+								</div>
+								<br>
+								<div class="row ">
+									<div class="col-md-2"></div>
+									<div class="col-md-3">
+										<input class="btn btn-primary" type="submit" value="Wyślij" />
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</section>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default btn-warning btn-sm"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/ie10-viewport-bug-workaround.js"></script>
+	<script src="js/forms.js"></script>
+	
+</body>
+
+</html>
