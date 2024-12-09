@@ -7,4 +7,4 @@ Imię: Adrian
 
 Nazwisko: Szymański
 
-Link do strony z lab9: https://adi8900.github.io
+Link do strony z lab10: https://adi8900.github.io/webpage
